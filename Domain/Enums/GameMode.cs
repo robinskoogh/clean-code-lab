@@ -2,7 +2,6 @@
 {
     public enum GameMode
     {
-        BullsAndCows = 1,
-        RockPaperScissors = 2
+        BullsAndCows = 1
     }
 }

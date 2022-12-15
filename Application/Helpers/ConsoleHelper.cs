@@ -15,12 +15,9 @@ namespace Application.Helpers
             Console.Write(prompt);
             string? userInput = Console.ReadLine();
 
-            //return string.IsNullOrWhiteSpace(userInput = Console.ReadLine()) ? "anonymous" : userInput;
-
-            if (string.IsNullOrWhiteSpace(userInput))
-                userInput = defaultValue;
-
-            return userInput;
+            return string.IsNullOrWhiteSpace(userInput) ? 
+                "anonymous" : 
+                userInput;
         }
 
         public void OutputMessage(string message) => Console.WriteLine(message);

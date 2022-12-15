@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Laboration_Smells", "Laboration_Smells\Laboration_Smells.csproj", "{A4409D4F-DBEC-452C-B570-FD04903D8549}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI_Console", "UI_Console\UI_Console.csproj", "{C63E71CE-19B8-430E-863D-777953A6067B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{DDCF5A88-7FF5-4155-8150-735BE3BD90F4}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A4409D4F-DBEC-452C-B570-FD04903D8549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4409D4F-DBEC-452C-B570-FD04903D8549}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4409D4F-DBEC-452C-B570-FD04903D8549}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4409D4F-DBEC-452C-B570-FD04903D8549}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C63E71CE-19B8-430E-863D-777953A6067B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C63E71CE-19B8-430E-863D-777953A6067B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C63E71CE-19B8-430E-863D-777953A6067B}.Release|Any CPU.ActiveCfg = Release|Any CPU

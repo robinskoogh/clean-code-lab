@@ -15,9 +15,6 @@ namespace Test.Infrastructure
 
         public BullsAndCowsScoreKeeperTests()
         {
-            if (File.Exists(ResultsFilename))
-                File.Delete(ResultsFilename);
-
             _mockIIOHelper = new Mock<IIOHelper>();
             _cabScoreKeeper = new(_mockIIOHelper.Object);
         }
@@ -26,6 +23,7 @@ namespace Test.Infrastructure
         public void Filename_Is_Not_Set_Throws_Exception()
         {
             // Arrange
+            RemoveTxtFileIfItExists();
             Action act = () => _cabScoreKeeper.WriteToFile("", 1);
 
             // Act
@@ -37,6 +35,7 @@ namespace Test.Infrastructure
         public void Filename_Has_Been_Set_Data_Is_Written_To_File()
         {
             // Arrange
+            RemoveTxtFileIfItExists();
             _cabScoreKeeper.SetFilename(ResultsFilename);
 
             Action act = () => _cabScoreKeeper.WriteToFile("test", 1);
@@ -62,6 +61,10 @@ namespace Test.Infrastructure
                 .WithMessage("Filename may only contain alphanumerical characters, including ._- without white-spaces.");
         }
 
-
+        private static void RemoveTxtFileIfItExists()
+        {
+            if (File.Exists(ResultsFilename))
+                File.Delete(ResultsFilename);
+        }
     }
 }

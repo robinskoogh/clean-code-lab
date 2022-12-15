@@ -93,9 +93,9 @@ namespace Test.Application.GameEngines
 
         private string RunPrivateMethod_EvaluatePlayerGuess(string goal, string guess)
         {
-            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("EvaluatePlayerGuess", BindingFlags.NonPublic | BindingFlags.Static);
+            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("EvaluatePlayerGuess", BindingFlags.NonPublic | BindingFlags.Static)!;
             object[] args = { goal, guess };
-            return methodInfo.Invoke(_gameEngine, args).ToString();
+            return methodInfo.Invoke(_gameEngine, args)!.ToString()!;
         }
         
         [Theory]
@@ -118,9 +118,9 @@ namespace Test.Application.GameEngines
 
         private string RunPrivateMethod_PromptUsername()
         {
-            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("PromptUsername", BindingFlags.NonPublic | BindingFlags.Instance);
-            object[] args = { };
-            return methodInfo.Invoke(_gameEngine, args).ToString();
+            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("PromptUsername", BindingFlags.NonPublic | BindingFlags.Instance)!;
+            object[] args = Array.Empty<object>();
+            return methodInfo.Invoke(_gameEngine, args)!.ToString()!;
         }
 
         [Theory]
@@ -137,9 +137,9 @@ namespace Test.Application.GameEngines
 
         private bool RunPrivateMethod_UsernameIsInvalid(string username)
         {
-            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("UsernameIsInvalid", BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("UsernameIsInvalid", BindingFlags.NonPublic | BindingFlags.Instance)!;
             object[] args = { username };
-            return (bool)methodInfo.Invoke(_gameEngine, args);
+            return (bool)methodInfo.Invoke(_gameEngine, args)!;
         }
 
         [Fact]
@@ -154,9 +154,9 @@ namespace Test.Application.GameEngines
 
         private int RunPrivateMethod_GenerateStringOfDigits()
         {
-            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("GenerateStringOfDigits", BindingFlags.NonPublic | BindingFlags.Static);
-            object[] args = { };
-            return int.Parse(methodInfo.Invoke(_gameEngine, args).ToString());
+            MethodInfo methodInfo = typeof(BullsAndCowsGameEngine).GetMethod("GenerateStringOfDigits", BindingFlags.NonPublic | BindingFlags.Static)!;
+            object[] args = Array.Empty<object>();
+            return int.Parse(methodInfo.Invoke(_gameEngine, args)!.ToString()!);
         }
     }
 }
