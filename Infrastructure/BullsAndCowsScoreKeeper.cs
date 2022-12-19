@@ -1,5 +1,4 @@
 ﻿using Application.Exceptions;
-using Application.Helpers;
 using Application.Interfaces;
 using Domain.Models;
 using System.Text.RegularExpressions;
@@ -8,9 +7,9 @@ namespace Infrastructure
 {
     public class BullsAndCowsScoreKeeper : IScoreKeeper
     {
-        private const string Divider = "#&#";
-        private string? _filename;
+        public string? Filename { get; private set; }
 
+        private const string Divider = "#&#";
         private readonly IIOHelper _ioHelper;
 
         public BullsAndCowsScoreKeeper(IIOHelper ioHelper)
@@ -20,28 +19,31 @@ namespace Infrastructure
 
         public void SetFilename(string filename)
         {
+            if (filename == null)
+                throw new FilenameNotSetException("The filename was was null and has not been set. Please review the call to _scoreKeeper.SetFilename() in Game.cs");
+
             Regex regex = new("^[a-zA-Z0-9._-]*$");
 
             if (!regex.IsMatch(filename))
                 throw new InvalidFilenameException("Filename may only contain alphanumerical characters, including ._- without white-spaces.");
 
-            _filename = filename;
+            Filename = filename;
         }
 
         public void WriteToFile(string username, int numberOfGuesses)
         {
-            if (_filename == null)
+            if (Filename == null)
                 throw new FilenameNotSetException("You need to set the filename of the scorekeeper before using it");
-            StreamWriter output = new(_filename, append: true);
+            StreamWriter output = new(Filename, append: true);
             output.WriteLine(string.Concat(username, Divider, numberOfGuesses));
             output.Close();
         }
 
         public void DisplayTopList()
         {
-            if (_filename == null)
+            if (Filename == null)
                 throw new FilenameNotSetException("You need to set the filename of the scorekeeper before using it");
-            StreamReader resultsReader = new(_filename);
+            StreamReader resultsReader = new(Filename);
             List<ScoreCard> scoreCards = new();
             string? resultEntry;
 
@@ -51,10 +53,12 @@ namespace Infrastructure
 
                 ScoreCard scoreCard = new(name, numberOfGuesses);
 
-                if (!scoreCards.Contains(scoreCard))
+                var existingScoreCard = scoreCards.FirstOrDefault(sc => sc.Name == name);
+
+                if (existingScoreCard == null)
                     scoreCards.Add(scoreCard);
                 else
-                    scoreCards.FirstOrDefault(pd => pd.Name == name)?.Update(numberOfGuesses);
+                    existingScoreCard.Update(numberOfGuesses);
             }
             resultsReader.Close();
 

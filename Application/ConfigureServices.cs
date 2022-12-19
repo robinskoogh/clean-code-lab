@@ -9,7 +9,6 @@ namespace Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddSingleton<IIOHelper, ConsoleHelper>();
-            services.AddSingleton<IGame, Game>();
 
             return services;
         }

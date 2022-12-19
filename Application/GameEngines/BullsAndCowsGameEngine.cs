@@ -39,9 +39,19 @@ namespace Application.GameEngines
 
                 int numberOfGuesses = PlayRound(VictorySequence, correctAnswer);
 
-                if (name != GuestUsername)
-                    _scoreKeeper.WriteToFile(name, numberOfGuesses);
-                _scoreKeeper.DisplayTopList();
+                try
+                {
+                    if (name != GuestUsername)
+                        _scoreKeeper.WriteToFile(name, numberOfGuesses);
+                    _scoreKeeper.DisplayTopList();
+
+                }
+                catch (Exception ex)
+                {
+                    _ioHelper.OutputMessage("Unable to save score or access top list.");
+                    _ioHelper.OutputMessage(ex.Message);
+                }
+
 
                 _ioHelper.OutputMessage(CorrectGuessMessage(numberOfGuesses));
 

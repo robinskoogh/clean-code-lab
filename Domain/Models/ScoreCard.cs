@@ -21,9 +21,5 @@
         }
 
         public double Average() => (double)_totalGuesses / GamesPlayed;
-
-        public override bool Equals(object? obj) => Name.Equals(((ScoreCard?)obj)?.Name);
-
-        public override int GetHashCode() => Name.GetHashCode();
     }
 }

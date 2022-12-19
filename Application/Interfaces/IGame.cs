@@ -3,7 +3,7 @@
     public interface IGame
     {
         void SetGameEngine(IGameEngine gameEngine);
-        void SelectGame();
+        bool SelectGame();
         void RunGame();
     }
 }
